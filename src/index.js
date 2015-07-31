@@ -39,7 +39,7 @@ const compile = (options = {}) => {
 
     // TODO Apply sourcemaps... It doesn't work for now.
     // if (file.sourceMap) {
-      // applySourceMap(file, result.map.toString());
+    //   applySourceMap(file, result.map.toString());
     // }
 
     this.push(file);
