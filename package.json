@@ -1,0 +1,28 @@
+{
+  "name": "gulp-extract-css-urls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "dependencies": {
+    "deepmerge": "^0.2.10",
+    "rework": "^1.0.1",
+    "rework-plugin-url": "^1.0.1",
+    "tempfile": "^1.1.1",
+    "through2": "^2.0.0",
+    "vinyl": "^0.5.0",
+    "vinyl-sourcemaps-apply": "^0.1.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.19",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.2"
+  },
+  "scripts": {
+    "clean": "rimraf lib/ && mkdirp lib/",
+    "build": "babel src/index.js --out-file lib/index.js",
+    "watch": "npm run build -- --watch",
+    "prepublish": "npm run build"
+  },
+  "author": "Cristian Pallarés <me@cpallares.com> (www.cpallares.com)",
+  "license": "ISC"
+}
