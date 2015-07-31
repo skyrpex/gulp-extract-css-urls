@@ -21,7 +21,9 @@ const compile = (options = {}) => {
       const filename = obj.pathname;
       const contents = fs.readFileSync(filename);
 
-      obj.pathname = `${md5(contents)}${path.extname(filename)}`;
+      const extname = path.extname(filename);
+      const basename = path.basename(filename, extname);
+      obj.pathname = `${basename}.${md5(contents)}${extname}`;
 
       this.push(new File({
         path: obj.pathname,
