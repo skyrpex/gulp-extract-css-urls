@@ -16,8 +16,6 @@ const compile = (options = {}) => {
 
   return through2.obj(function(file, enc, callback) {
 
-    console.log(file.cwd, file.base, file.path);
-
     const handle = url => {
       const obj = parse(url);
       const filename = obj.pathname;
@@ -37,11 +35,9 @@ const compile = (options = {}) => {
       .use(url(handle))
       .toString({ sourcemap: true, sourcemapAsObject: true });
 
-    // console.log(Object.keys(result));
     file.contents = new Buffer(result.code);
 
-    // console.log(Object.keys(result.map));
-
+    // TODO Apply sourcemaps... It doesn't work for now.
     // if (file.sourceMap) {
       // applySourceMap(file, result.map.toString());
     // }
