@@ -3,7 +3,6 @@ import path from 'path';
 import File from 'vinyl';
 import rework from 'rework';
 import through2 from 'through2';
-import tempfile from 'tempfile';
 import deepmerge from 'deepmerge';
 import {createHash} from 'crypto';
 import {parse, format} from 'url';
