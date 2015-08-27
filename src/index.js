@@ -16,6 +16,11 @@ const compile = (options = {}) => {
   return through2.obj(function(file, enc, callback) {
 
     const handle = url => {
+      // Ignore data URLs.
+      if (url.match(/^data:/)) {
+        return url;
+      }
+
       const obj = parse(url);
       const filename = obj.pathname;
       const contents = fs.readFileSync(filename);

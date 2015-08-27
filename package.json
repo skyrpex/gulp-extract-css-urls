@@ -1,6 +1,6 @@
 {
   "name": "gulp-extract-css-urls",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Imports to the pipeline all the CSS assets included with url()",
   "main": "lib/index.js",
   "keywords": [
