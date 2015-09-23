@@ -1,17 +1,20 @@
-import fs from 'fs';
-import path from 'path';
-import File from 'vinyl';
-import rework from 'rework';
-import through2 from 'through2';
-import deepmerge from 'deepmerge';
-import {createHash} from 'crypto';
+import fs              from 'fs';
 import {parse, format} from 'url';
-import url from 'rework-plugin-url';
-import applySourceMap from 'vinyl-sourcemaps-apply';
+import path            from 'path';
+import File            from 'vinyl';
+import rework          from 'rework';
+import {createHash}    from 'crypto';
+import through2        from 'through2';
+import deepmerge       from 'deepmerge';
+import template        from 'lodash.template';
+import url             from 'rework-plugin-url';
+import applySourceMap  from 'vinyl-sourcemaps-apply';
 
 const md5 = buffer => createHash('md5').update(buffer.toString()).digest('hex');
 
-const compile = (options = {}) => {
+// [name].[hash][ext]
+
+const compile = (name = '[hash][ext]') => {
 
   return through2.obj(function(file, enc, callback) {
 
@@ -25,9 +28,12 @@ const compile = (options = {}) => {
       const filename = obj.pathname;
       const contents = fs.readFileSync(filename);
 
-      const extname = path.extname(filename);
-      const basename = path.basename(filename, extname);
-      obj.pathname = `${basename}.${md5(contents)}${extname}`;
+      const ext = path.extname(filename);
+      obj.pathname = template(name, { interpolate: /\[(.+?)\]/g })({
+        ext,
+        hash: md5(contents),
+        name: path.basename(filename, ext),
+      });
 
       this.push(new File({
         path: obj.pathname,

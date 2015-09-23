@@ -1,6 +1,6 @@
 {
   "name": "gulp-extract-css-urls",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Imports to the pipeline all the CSS assets included with url()",
   "main": "lib/index.js",
   "keywords": [
@@ -26,6 +26,7 @@
     "gaze": "^0.5.1",
     "gulp-util": "^3.0.6",
     "less": "^2.5.1",
+    "lodash.template": "^3.6.2",
     "rework": "^1.0.1",
     "rework-plugin-url": "^1.1.0",
     "through2": "^2.0.0",
